@@ -1,10 +1,1 @@
-{:itonami.blueprint/id "cloud-itonami-isco-4322"
- :itonami.blueprint/name "Independent Production Clerk Practice"
- :itonami.blueprint/isco-08 "4322"
- :itonami.blueprint/domain :manufacturing/production-clerking
- :itonami.blueprint/license "AGPL-3.0-or-later"
- :itonami.blueprint/social-impact [:local-jobs :data-quality :manufacturing-quality]
- :itonami.blueprint/governor :production-clerking-governor
- :itonami.blueprint/robotics true
- :itonami.blueprint/required-technologies [:robotics :forms :telemetry :audit-ledger :bpmn]
- :itonami.blueprint/status :public-oss}
+[{:itonami.blueprint/social-impact [:local-jobs :data-quality :manufacturing-quality], :itonami.blueprint/domain :manufacturing/production-clerking, :itonami.blueprint/required-technologies [:robotics :forms :telemetry :audit-ledger :bpmn], :itonami.blueprint/isco-08 "4322", :itonami.blueprint/name "Independent Production Clerk Practice", :itonami.blueprint/governor :production-clerking-governor, :itonami.blueprint/robotics true, :db/id -1, :itonami.blueprint/status :public-oss, :itonami.blueprint/id "cloud-itonami-isco-4322", :itonami.blueprint/license "AGPL-3.0-or-later"}]
