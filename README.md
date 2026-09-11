@@ -62,17 +62,17 @@ human-in-the-loop interrupt/resume via checkpointing.
                                            +-> :hold               (:hard? true)
 ```
 
-- `src/production_clerking/store.cljc` — `Store` protocol +
+- `src/production_clerking/store.cljk` — `Store` protocol +
   `MemStore`: registered production orders, committed records, an
   append-only audit ledger.
-- `src/production_clerking/advisor.cljc` — `Advisor` protocol;
+- `src/production_clerking/advisor.cljk` — `Advisor` protocol;
   `mock-advisor` (deterministic, default) proposes a tracking
   operation from a request; `llm-advisor` wraps a
   `langchain.model/ChatModel` — either way the advisor only ever
   produces a `:propose`-effect proposal, never a committed record, and
   LLM parse failures always yield `confidence 0.0` (forces escalation,
   never fabricated confidence).
-- `src/production_clerking/governor.cljc` —
+- `src/production_clerking/governor.cljk` —
   `ProductionClerkingGovernor/check`: a pure function, wired as its own
   `:govern` node. Hard invariants (unregistered order, a proposal
   whose `:effect` isn't `:propose`) always route to `:hold`. Escalation
@@ -84,7 +84,7 @@ human-in-the-loop interrupt/resume via checkpointing.
   that closing a production run with an unresolved discrepancy or
   overriding a scheduling conflict affecting safety staffing always
   require human sign-off.
-- `src/production_clerking/actor.cljc` — `build-graph`, `run-request!`,
+- `src/production_clerking/actor.cljk` — `build-graph`, `run-request!`,
   `approve!`: the `langgraph.graph/state-graph` wiring itself.
 
 ```bash
