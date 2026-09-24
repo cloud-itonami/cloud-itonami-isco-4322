@@ -1,5 +1,5 @@
 (ns production-clerking.actor-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [production-clerking.actor :as actor]
             [production-clerking.store :as store]))
 
