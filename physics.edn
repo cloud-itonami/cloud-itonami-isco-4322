@@ -1,0 +1,32 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:physics` runs it.
+;;
+;; README "Robotics premise": a production-tracking robot performs physical
+;; job-ticket scanning and work-in-progress counting. Declared here: the
+;; tracking round between workstations, and a WIP bin lifted onto the
+;; count scale (parts are counted by weight).
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isco-4322"
+ :cases
+ [{:id :tracking-round-leg
+   :kind :transport
+   :procedure "tracking robot drives between two workstations on its job-ticket scanning round"
+   :params {:mass-kg 40.0 :payload-kg 3.0 :v-max-mps 1.0 :a-max-mps2 0.6
+            :brake-decel-mps2 1.0 :drive-force-n 120.0 :crr 0.015
+            :cog-height-m 0.70 :support-half-length-m 0.25}
+   :sweep {:param :distance-m :values [5.0 15.0 30.0 60.0 100.0]}
+   :quantity :cycle-time-s
+   :limit {:max 45.0 :basis "estimate: a leg between stations short enough that a 12-station round refreshes WIP within 10 minutes"}
+   :boundary {:lo 1.0 :hi 200.0}}
+  {:id :wip-bin-to-count-scale
+   :kind :manipulator
+   :procedure "arm lifts a work-in-progress bin from the line-side rack onto the counting scale"
+   :params {:l1-m 0.55 :l2-m 0.45 :m1-kg 5.0 :m2-kg 3.5
+            :from [0.60 0.30] :to [0.50 -0.10] :duration-s 2.0 :steps 500}
+   :sweep {:param :payload-kg :values [2.0 5.0 10.0 15.0 20.0]}
+   :quantity :peak-tau1-nm
+   :limit {:max 120.0 :basis "estimate: continuous shoulder torque of a ~12 kg-payload collaborative arm"}
+   :boundary {:lo 0.5 :hi 40.0}}]}
