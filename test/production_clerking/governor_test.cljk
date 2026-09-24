@@ -1,5 +1,5 @@
 (ns production-clerking.governor-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [production-clerking.store :as store]
             [production-clerking.governor :as governor]))
 
